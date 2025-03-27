@@ -17,7 +17,7 @@ quizForm.addEventListener("submit", async (e) => {
     const level = document.getElementById("level").value;
 
     try {
-        const response = await fetch("/generate-quiz", {
+        const response = await fetch("https://blastrevise-api.onrender.com/generate-quiz", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ topic: topic, num_questions: numQuestions, question_format: format,question_level:level })
@@ -96,7 +96,7 @@ submitQuizBtn.addEventListener("click", async () => {
         const level = document.getElementById("level").value;
 
         try {
-            const checkResponse = await fetch("/check-answer", {
+            const checkResponse = await fetch("https://blastrevise-api.onrender.com/check-answer", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -140,7 +140,7 @@ document.getElementById("resetMemoryBtn").addEventListener("click", async () => 
     if (!confirm("Are you sure you want to reset the question memory?")) return; // Confirmation
 
     try {
-        const response = await fetch("/reset-memory", { method: "POST" });
+        const response = await fetch("https://blastrevise-api.onrender.com/reset-memory", { method: "POST" });
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
