@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>BlastRevise - AI Quiz App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>BlastRevise</h1>
+  <button id="infoButton">?</button>  <!-- Question Mark Button -->
+  <div id="infoPanel">
+    <button id="closePanel">X</button>
+    <h2>About BlastRevise</h2>
+    <p>BlastRevise is an AI-powered quiz app designed to generate topic-based questions at different difficulty levels. Choose your topic, select a difficulty, and get quizzed instantly!</p>
+    <h3>How It Works</h3>
+    <ul>
+      <li>Enter a topic and the number of questions you want.</li>
+      <li>Select a question format and difficulty level.</li>
+      <li>Click "Generate Quiz" to get your quiz.</li>
+      <li>Answer the questions and submit to check results.</li>
+      <li>Use "Reset Questions Memory" to clear previously generated questions.</li>
+    </ul>
+  </div>
+  <form id="quizForm">
+    <input type="text" id="topic" placeholder="Add a topic to be quizzed on" required>
+    <input type="number" id="numQuestions" placeholder="Number of Questions" required>
+    <select id="format">
+      <option value="multiple choice">Multiple Choice</option>
+      <option value="Short Answer (one sentence max)">Short Answer</option>
+      <option value="Long Answer (multiple paragraphs)">Long Answer</option>
+    </select>
+    <select id="level">
+      <option value="GCSE Lower Grades 2 - 4">GCSE Lower (grade 2-4)</option>
+      <option value="GCSE Medium Grades 4 - 7">GCSE Medium (grade 4-7)</option>
+      <option value="GCSE_Higher Grades 7 - 9">GCSE Higher (grade 7-9)</option>
+      <option value="A-level Lower Grades U - D">A Level Higher (grade U-D)</option>
+      <option value="A-level Medium grades C - B">A Level Medium (grade C-B)</option>
+      <option value="A-level Higher grades A-A*">A Level Higher (grade A-A*)</option>
+      <option value="University Standard Third Class Degree">University Third class degree</option>
+      <option value="University Standard Second Class Degree">University Second class degree</option>
+      <option value="University Standard First Class Degree">University First class degree</option>
+
+    </select>
+    <button type="submit">Generate Quiz</button>
+    <button id="resetMemoryBtn" style="display: block; margin-top: 10px; background-color: red; color: white; padding: 10px; border: none; cursor: pointer;">
+      Reset Questions Memory
+  </button>
+  
+  </form>
+
+  <div id="quizContainer"></div>
+  <button id="submitQuiz" style="display:none;">Submit Answers</button>
+  <div id="result"></div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
