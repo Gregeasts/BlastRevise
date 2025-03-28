@@ -145,13 +145,13 @@ p{
 /* For screens 800px or smaller */
 @media screen and (max-width: 800px) {
   input, select, button {
-    font-size: 28px;  /* Adjust font size for medium-small screens */
+    font-size: 20px;  /* Adjust font size for medium-small screens */
   }
   option{
     font-size: 12px;
   }
   p{
-    font-size: 24px;
+    font-size: 20px;
   }
   #infoPanel p,ul{
     font-size:20px
@@ -164,7 +164,7 @@ p{
 /* For screens 600px or smaller */
 @media screen and (max-width: 600px) {
   input, select, button,p {
-    font-size: 34px;  /* Adjust font size for very small screens */
+    font-size: 22px;  /* Adjust font size for very small screens */
   }
   option{
     font-size: 15px;
@@ -173,10 +173,10 @@ p{
     font-size:24px
   }
   p{
-    font-size: 30px;
+    font-size: 20px;
   }
   h2,h3{
-    font-size: 26px;
+    font-size: 24px;
   }
 }
 
