@@ -3,9 +3,7 @@ const quizContainer = document.getElementById("quizContainer");
 const submitQuizBtn = document.getElementById("submitQuiz");
 const resultDiv = document.getElementById("result");
 let questions = [];
-function formatExplanation(text) {
-    return text.replace(/\*\*/g, '<br><br>');  // Replaces '**' with two line breaks
-}
+
 // Generate quiz questions
 quizForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -124,10 +122,13 @@ submitQuizBtn.addEventListener("click", async () => {
             }
 
             const isCorrect = resultData.result.slice(0, 20).toLowerCase().includes("correct");
+            function formatExplanation(text) {
+                return text.split("**").map(part => `<p>${part.trim()}</p>`).join("");
+            }
             if (isCorrect) score++;
             resultsHtml += `
                 <p>Q${i + 1}: ${isCorrect ? "✅ Correct" : "❌ Incorrect"}</p>
-                ${resultData.result.length >= 25 ? `<p>Explanation: ${formatExplanation(resultData.result)}</p>` : ""}
+               ${resultData.result.length >= 25 ? `<div>Explanation: ${formatExplanation(resultData.result)}</div>` : ""}
             `;
 
         } catch (error) {
