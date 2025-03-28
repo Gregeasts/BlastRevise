@@ -6,6 +6,10 @@ body {
   padding: 30px;
 }
 
+.smaller {
+    font-size: 14px; /* Adjust this value as needed */
+}
+
 h1 {
   color: #007bff;
   font-size: 2.5rem;
