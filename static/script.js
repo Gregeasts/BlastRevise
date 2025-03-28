@@ -132,7 +132,7 @@ submitQuizBtn.addEventListener("click", async () => {
             if (isCorrect) score++;
             resultsHtml += `
                 <p>Q${i + 1}: ${isCorrect ? "✅ Correct" : "❌ Incorrect"}</p>
-               ${resultData.result.length >= 25 ? `<div><p>Explanation:</p> ${formatExplanation(resultData.result)}</div>` : ""}
+               ${resultData.result.length >= 40 ? `<div><p>Explanation:</p> ${formatExplanation(resultData.result)}</div>` : ""}
             `;
 
         } catch (error) {
