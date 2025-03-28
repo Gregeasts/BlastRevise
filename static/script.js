@@ -123,12 +123,14 @@ submitQuizBtn.addEventListener("click", async () => {
 
             const isCorrect = resultData.result.slice(0, 20).toLowerCase().includes("correct");
             function formatExplanation(text) {
-                return text.split("**").map(part => `<p>${part.trim()}</p>`).join("");
+                return text.split(/\*{2,3}/)  // Splits on ** or ***
+                           .map(part => part.trim() ? `<p class='smaller'>${part.trim()}</p>` : "")
+                           .join("");
             }
             if (isCorrect) score++;
             resultsHtml += `
                 <p>Q${i + 1}: ${isCorrect ? "✅ Correct" : "❌ Incorrect"}</p>
-               ${resultData.result.length >= 25 ? `<div>Explanation: ${formatExplanation(resultData.result)}</div>` : ""}
+               ${resultData.result.length >= 25 ? `<div><p>Explanation:</p> ${formatExplanation(resultData.result)}</div>` : ""}
             `;
 
         } catch (error) {
