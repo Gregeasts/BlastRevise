@@ -5,11 +5,17 @@ const resultDiv = document.getElementById("result");
 let questions = [];
 
 // Generate quiz questions
+let isSubmitting = false;
 quizForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
+    // Set the flag to indicate that submission is in progress
+    isSubmitting = true;
     quizContainer.innerHTML = "";
     resultDiv.innerHTML = "";
     submitQuizBtn.style.display = "none";
+    
 
     const topic = document.getElementById("topic").value;
     const numQuestions = document.getElementById("numQuestions").value;
@@ -62,6 +68,7 @@ quizForm.addEventListener("submit", async (e) => {
                 </div>`;
         });
         submitQuizBtn.style.display = "block";
+        isSubmitting = false;
     } catch (error) {
         console.error("Error:", error);
         alert("There was an error generating the quiz.");
