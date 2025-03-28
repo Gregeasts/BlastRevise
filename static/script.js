@@ -123,6 +123,8 @@ submitQuizBtn.addEventListener("click", async () => {
 
             const isCorrect = resultData.result.slice(0, 20).toLowerCase().includes("correct");
             function formatExplanation(text) {
+                text = text.replace(/(?!A)\*(?!\*)/g, '');
+
                 return text.split(/\*{2,3}/)  // Splits on ** or ***
                            .map(part => part.trim() ? `<p class='smaller'>${part.trim()}</p>` : "")
                            .join("");
