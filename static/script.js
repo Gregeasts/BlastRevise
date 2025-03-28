@@ -3,7 +3,9 @@ const quizContainer = document.getElementById("quizContainer");
 const submitQuizBtn = document.getElementById("submitQuiz");
 const resultDiv = document.getElementById("result");
 let questions = [];
-
+function formatExplanation(text) {
+    return text.replace(/\*\*/g, '<br><br>');  // Replaces '**' with two line breaks
+}
 // Generate quiz questions
 quizForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -114,6 +116,7 @@ submitQuizBtn.addEventListener("click", async () => {
 
             const resultData = await checkResponse.json();
             console.log(resultData);
+            
 
             if (resultData.error) {
                 resultsHtml += `<p>Error checking answer for Q${i + 1}: ${resultData.error}</p>`;
@@ -124,7 +127,7 @@ submitQuizBtn.addEventListener("click", async () => {
             if (isCorrect) score++;
             resultsHtml += `
                 <p>Q${i + 1}: ${isCorrect ? "✅ Correct" : "❌ Incorrect"}</p>
-                ${resultData.result.length >= 25 ? `<p>Explanation: ${resultData.result}</p>` : ""}
+                ${resultData.result.length >= 25 ? `<p>Explanation: ${formatExplanation(resultData.result)}</p>` : ""}
             `;
 
         } catch (error) {
