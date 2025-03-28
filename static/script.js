@@ -15,6 +15,7 @@ quizForm.addEventListener("submit", async (e) => {
     quizContainer.innerHTML = "";
     resultDiv.innerHTML = "";
     submitQuizBtn.style.display = "none";
+    document.getElementById("loading-spinner").style.display = "block"; // Show spinner
     
 
     const topic = document.getElementById("topic").value;
@@ -69,6 +70,7 @@ quizForm.addEventListener("submit", async (e) => {
         });
         submitQuizBtn.style.display = "block";
         isSubmitting = false;
+        document.getElementById("loading-spinner").style.display = "none";
     } catch (error) {
         console.error("Error:", error);
         alert("There was an error generating the quiz.");
