@@ -78,10 +78,16 @@ quizForm.addEventListener("submit", async (e) => {
 });
 
 // Submit answers and check them one by one
+let isSubmitting1 = false;
 submitQuizBtn.addEventListener("click", async () => {
+    if (isSubmitting1) return;
+
+    // Set the flag to indicate that submission is in progress
+    isSubmitting1 = true;
     let allAnswered = true;
     let score = 0;
     let resultsHtml = "";
+    document.getElementById("loading-spinner1").style.display = "block"; // Show spinner
 
     for (let i = 0; i < str_json.length; i++) {
         const userAnswer = document.getElementById(`answer-${i}`).value.trim();
@@ -129,6 +135,8 @@ submitQuizBtn.addEventListener("click", async () => {
                 resultsHtml += `<p>Error checking answer for Q${i + 1}: ${resultData.error}</p>`;
                 continue;
             }
+            isSubmitting1 = false;
+            document.getElementById("loading-spinner1").style.display = "none";
 
             const isCorrect = resultData.result.slice(0, 20).toLowerCase().includes("correct");
             function formatExplanation(text) {
@@ -151,6 +159,7 @@ submitQuizBtn.addEventListener("click", async () => {
     }
 
     resultDiv.innerHTML = resultsHtml + `<h3>Final Score: ${score} out of ${str_json.length}</h3>`;
+    
 });
 
 document.getElementById("resetMemoryBtn").addEventListener("click", async () => {
